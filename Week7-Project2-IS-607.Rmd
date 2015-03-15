@@ -1,0 +1,166 @@
+---
+title: "Week7Project2"
+author: "MuthukumarSrinivasan & RajagopalSrinivasan"
+date: "Saturday, March 14, 2015"
+output: word_document
+---
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+```{r}
+
+require(ggplot2)
+library(ggplot2)
+
+week7project2<-read.csv('c:/temp/Week7Project2ForR.csv',header=TRUE)
+summary(week7project2)
+
+
+str(week7project2)
+
+qplot(week7project2$x1,week7project2$y1,data=week7project2)
+qplot(week7project2$x2,week7project2$y2,data=week7project2)
+qplot(week7project2$x3,week7project2$y3,data=week7project2)
+
+
+qplot(week7project2$x1,week7project2$y1,data=week7project2,geom="boxplot")
+qplot(week7project2$x2,week7project2$y2,data=week7project2,geom="boxplot")
+qplot(week7project2$x3,week7project2$y3,data=week7project2,geom="boxplot")
+
+qplot(week7project2$x1,data=week7project2,geom="histogram")
+qplot(week7project2$x2,data=week7project2,geom="histogram")
+qplot(week7project2$x3,data=week7project2,geom="histogram")
+
+qplot(week7project2$x1,data=week7project2,geom="bar")
+qplot(week7project2$x2,data=week7project2,geom="bar")
+qplot(week7project2$x3,data=week7project2,geom="bar")
+
+```
+
+```{r}
+boxplot(week7project2$x1)
+hist(week7project2$x1)
+
+boxplot(week7project2$y1)
+hist(week7project2$y1)
+
+boxplot(week7project2$x2)
+hist(week7project2$x2)
+
+boxplot(week7project2$y2)
+hist(week7project2$y2)
+
+boxplot(week7project2$x3)
+hist(week7project2$x3)
+
+boxplot(week7project2$y3)
+hist(week7project2$y3)
+
+```
+
+```{r}
+ggplot(data=week7project2,aes(x=week7project2$x1,y=week7project2$y1))+ geom_line() + geom_point()
+ggplot(data=week7project2,aes(x=week7project2$x2,y=week7project2$y2))+ geom_line() + geom_point()
+ggplot(data=week7project2,aes(x=week7project2$x3,y=week7project2$y3))+ geom_line() + geom_point()
+
+```
+
+```{r}
+table(week7project2$x1)
+```
+
+```{r}
+week7project2<-read.csv('c:/temp/Week7Project2ForR.csv',header=TRUE)
+x1<-week7project2$x1
+y1<-week7project2$y1
+x2<-week7project2$x2
+y2<-week7project2$y2
+x3<-week7project2$x3
+y3<-week7project2$y3
+x4<-week7project2$x4
+y4<-week7project2$y4
+
+## various derivation for x1 and y1
+
+plot(week7project2$x1,week7project2$y1, main="Scatter Plot of I SET of DATA", xlab="x axis", ylab="y axis",)
+
+abline(lm(x1~y1), col="red") #regression line (y~x)
+abline(lm(y1~x1), col="blue") #regression line (y~x)
+lines(lowess(x1,y1),col="yellow") #lowess line (x,y)
+
+library(compare)
+comparison<-compare(x1,y1, allowAll=TRUE)
+
+comparison$tM
+
+## various derivation for x2 and y2
+
+plot(week7project2$x2,week7project2$y2, main="Scatter Plot of II SET of DATA", xlab="x axis", ylab="y axis",)
+
+abline(lm(x2~y2), col="red") #regression line (y~x)
+abline(lm(y2~x2), col="blue") #regression line (y~x)
+lines(lowess(x2,y2),col="yellow") #lowess line (x,y)
+
+library(compare)
+comparison<-compare(x2,y2, allowAll=TRUE)
+
+comparison$tM
+
+## various derivation for x3 and y3
+
+plot(week7project2$x3,week7project2$y3, main="Scatter Plot of III SET of DATA", xlab="x axis", ylab="y axis",)
+
+abline(lm(x3~y3), col="red") #regression line (y~x)
+abline(lm(y3~x3), col="blue") #regression line (y~x)
+lines(lowess(x3,y3),col="yellow") #lowess line (x,y)
+
+library(compare)
+comparison<-compare(x3,y3, allowAll=TRUE)
+
+comparison$tM
+
+## various derivation for x4 and y4
+
+plot(week7project2$x4,week7project2$y4, main="Scatter Plot of IV SET of DATA", xlab="x axis", ylab="y axis",)
+
+abline(lm(x4~y4), col="red") #regression line (y~x)
+abline(lm(y4~x4), col="blue") #regression line (y~x)
+lines(lowess(x4,y4),col="yellow") #lowess line (x,y)
+
+library(compare)
+comparison<-compare(x4,y4, allowAll=TRUE)
+
+comparison$tM
+
+```
+
+```{r}
+
+## All points in one Graph
+
+week7project2<-read.csv('c:/temp/Week7Project2ForR.csv',header=TRUE)
+x1<-week7project2$x1
+y1<-week7project2$y1
+x2<-week7project2$x2
+y2<-week7project2$y2
+x3<-week7project2$x3
+y3<-week7project2$y3
+x4<-week7project2$x4
+y4<-week7project2$y4
+
+plot(x1,y1, main="Scatter Plot of All SET of DATA", xlab="x axis", ylab="y axis",)
+points(x2,y2,col=2,pch=2)
+points(x3,y3,col=3,pch=3)
+points(x4,y4,col=4,pch=4)
+
+legend(24,80,c("I Set","II Set","III Set","IV Set"),col=c(1,2,3,4),pch=c(1,2,3,4))
+
+
+```
+
+
